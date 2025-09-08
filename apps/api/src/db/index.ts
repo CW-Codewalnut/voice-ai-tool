@@ -10,4 +10,5 @@ const client = createClient({
 
 export const db = drizzle({
 	client,
+	casing: "snake_case",
 });

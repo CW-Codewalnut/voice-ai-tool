@@ -1,7 +1,7 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
-const zodURL = z.url();
+const zodURL = z.string().url();
 const zodString = z.string().min(1);
 
 export const ENV = createEnv({

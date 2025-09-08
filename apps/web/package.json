@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/geist": "^5.2.6",
+		"@openai/agents": "^0.1.1",
 		"@react-router/fs-routes": "^7.8.2",
 		"@react-router/node": "^7.8.2",
 		"@react-router/serve": "^7.8.2",
@@ -27,7 +28,8 @@
 		"react-router": "^7.8.2",
 		"sonner": "^2.0.7",
 		"superjson": "^2.2.2",
-		"tailwind-merge": "^3.3.1"
+		"tailwind-merge": "^3.3.1",
+		"zod": "3"
 	},
 	"devDependencies": {
 		"@cw/api": "workspace:*",
