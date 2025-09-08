@@ -6,6 +6,10 @@ const tableTimeStampCols = {
 	createdAt: integer({ mode: "timestamp" })
 		.$defaultFn(() => new Date())
 		.notNull(),
+
+	updatedAt: integer({ mode: "timestamp" })
+		.$defaultFn(() => new Date())
+		.notNull(),
 };
 
 const tablePrimaryCol = {

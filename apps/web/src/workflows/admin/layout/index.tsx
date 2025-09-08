@@ -52,7 +52,7 @@ export function AdminLayout() {
 				<AdminSidebar />
 				<SidebarInset>
 					<AppHeader />
-					<div className="mx-auto max-w-7xl p-4">
+					<div className="mx-auto w-full max-w-7xl p-4">
 						<Outlet context={data} />
 					</div>
 				</SidebarInset>

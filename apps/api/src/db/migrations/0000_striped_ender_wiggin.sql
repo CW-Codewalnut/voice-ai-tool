@@ -1,6 +1,7 @@
 CREATE TABLE `account` (
 	`id` text PRIMARY KEY NOT NULL,
 	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
 	`accountId` text NOT NULL,
 	`providerId` text NOT NULL,
 	`userId` text NOT NULL,
@@ -17,6 +18,7 @@ CREATE TABLE `account` (
 CREATE TABLE `session` (
 	`id` text PRIMARY KEY NOT NULL,
 	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
 	`expiresAt` integer NOT NULL,
 	`token` text NOT NULL,
 	`ipAddress` text,
@@ -29,6 +31,7 @@ CREATE UNIQUE INDEX `session_token_unique` ON `session` (`token`);--> statement-
 CREATE TABLE `user` (
 	`id` text PRIMARY KEY NOT NULL,
 	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
 	`name` text NOT NULL,
 	`email` text NOT NULL,
 	`emailVerified` integer NOT NULL,
@@ -39,7 +42,27 @@ CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);--> statement-breakp
 CREATE TABLE `verification` (
 	`id` text PRIMARY KEY NOT NULL,
 	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
 	`identifier` text NOT NULL,
 	`value` text NOT NULL,
 	`expiresAt` integer NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE `system_settings` (
+	`id` text PRIMARY KEY NOT NULL,
+	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
+	`voiceId` text NOT NULL,
+	`systemPrompt` text NOT NULL,
+	`voiceSpeed` integer NOT NULL,
+	`welcomeMessage` text NOT NULL,
+	`questions` text NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE `transcript` (
+	`id` text PRIMARY KEY NOT NULL,
+	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
+	`sessionId` text NOT NULL,
+	`content` text
 );

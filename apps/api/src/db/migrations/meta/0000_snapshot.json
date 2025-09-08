@@ -1,7 +1,7 @@
 {
 	"version": "6",
 	"dialect": "sqlite",
-	"id": "0773c5cc-cd02-47e7-bbbd-be07c4c4c121",
+	"id": "cd82871c-7445-4193-b369-0fc40f55bb54",
 	"prevId": "00000000-0000-0000-0000-000000000000",
 	"tables": {
 		"account": {
@@ -16,6 +16,13 @@
 				},
 				"createdAt": {
 					"name": "createdAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"updatedAt": {
+					"name": "updatedAt",
 					"type": "integer",
 					"primaryKey": false,
 					"notNull": true,
@@ -125,6 +132,13 @@
 					"notNull": true,
 					"autoincrement": false
 				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
 				"expiresAt": {
 					"name": "expiresAt",
 					"type": "integer",
@@ -200,6 +214,13 @@
 					"notNull": true,
 					"autoincrement": false
 				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
 				"name": {
 					"name": "name",
 					"type": "text",
@@ -258,6 +279,13 @@
 					"notNull": true,
 					"autoincrement": false
 				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
 				"identifier": {
 					"name": "identifier",
 					"type": "text",
@@ -277,6 +305,117 @@
 					"type": "integer",
 					"primaryKey": false,
 					"notNull": true,
+					"autoincrement": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		},
+		"system_settings": {
+			"name": "system_settings",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"createdAt": {
+					"name": "createdAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"voiceId": {
+					"name": "voiceId",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"systemPrompt": {
+					"name": "systemPrompt",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"voiceSpeed": {
+					"name": "voiceSpeed",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"welcomeMessage": {
+					"name": "welcomeMessage",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"questions": {
+					"name": "questions",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		},
+		"transcript": {
+			"name": "transcript",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"createdAt": {
+					"name": "createdAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"sessionId": {
+					"name": "sessionId",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"content": {
+					"name": "content",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false,
 					"autoincrement": false
 				}
 			},

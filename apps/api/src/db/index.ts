@@ -2,6 +2,7 @@ import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 
 import { ENV } from "../lib/env";
+import * as schema from "./schema";
 
 const client = createClient({
 	url: ENV.DATABASE_URL,
@@ -10,5 +11,5 @@ const client = createClient({
 
 export const db = drizzle({
 	client,
-	casing: "snake_case",
+	schema,
 });
