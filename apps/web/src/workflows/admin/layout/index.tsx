@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 
+import { AppHeader } from "~/components/ui/app-header";
 import { PageCenter } from "~/components/ui/page-center";
 import { PageSpinner } from "~/components/ui/page-spinner";
+import { SidebarInset, SidebarProvider } from "~/components/ui/sidebar";
 import { authClient } from "~/lib/auth";
 import { ROUTE_HOME, ROUTE_LOGIN } from "~/lib/constants";
 
-import { AppHeader } from "./app-header";
 import { Login } from "./login";
+import { AdminSidebar } from "./sidebar";
 
-export function AppLayout() {
+export function AdminLayout() {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { isPending, data } = authClient.useSession();
@@ -46,12 +48,15 @@ export function AppLayout() {
 
 	if (data) {
 		return (
-			<>
-				<AppHeader />
-				<main className="mx-auto max-w-7xl p-4">
-					<Outlet context={data} />
-				</main>
-			</>
+			<SidebarProvider>
+				<AdminSidebar />
+				<SidebarInset>
+					<AppHeader />
+					<div className="mx-auto max-w-7xl p-4">
+						<Outlet context={data} />
+					</div>
+				</SidebarInset>
+			</SidebarProvider>
 		);
 	}
 }

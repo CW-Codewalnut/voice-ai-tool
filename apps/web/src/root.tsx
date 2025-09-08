@@ -4,15 +4,14 @@ import "./app.css";
 import "@fontsource-variable/geist";
 
 import type { MetaDescriptor } from "react-router";
-import { Links, Meta, Scripts, ScrollRestoration } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
-import { AppLayout } from "~/components/app-layout";
 import { AppProviders } from "~/components/providers";
 
 export function meta() {
 	return [
-		{ title: "Monorepo Template" },
-		{ name: "description", content: "Monorepo Template" },
+		{ title: "Voice Based Survey Tool | CodeWalnut" },
+		{ name: "description", content: "Voice Based Survey Tool by CodeWalnut" },
 	] satisfies MetaDescriptor[];
 }
 
@@ -37,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
 	return (
 		<AppProviders>
-			<AppLayout />
+			<Outlet />
 		</AppProviders>
 	);
 }

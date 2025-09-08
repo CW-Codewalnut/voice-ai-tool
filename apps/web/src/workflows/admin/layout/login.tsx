@@ -13,7 +13,7 @@ export function Login() {
 
 	return (
 		<section className="flex flex-col items-center gap-5">
-			<h1 className="font-bold text-3xl">Monorepo Template</h1>
+			<h1 className="font-bold text-3xl">Voice Based Survey Tool</h1>
 			<Button onClick={handleSignIn} size="lg">
 				<GoogleIcon />
 				Continue with Google

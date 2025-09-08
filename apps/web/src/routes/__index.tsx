@@ -1,12 +1,12 @@
-import { PageCenter } from "~/components/ui/page-center";
-import { useAuth } from "~/hooks/use-auth";
+import { AppHeader } from "~/components/ui/app-header";
 
-export default function HomePage() {
-	const auth = useAuth();
-
+export default function HomeRoute() {
 	return (
-		<PageCenter>
-			<pre>{JSON.stringify(auth, null, 2)}</pre>
-		</PageCenter>
+		<>
+			<AppHeader />
+			<main className="mx-auto max-w-7xl p-4">
+				<h1 className="font-bold text-2xl">Home</h1>
+			</main>
+		</>
 	);
 }
