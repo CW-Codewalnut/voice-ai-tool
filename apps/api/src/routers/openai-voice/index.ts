@@ -3,6 +3,8 @@ import { eq } from "drizzle-orm";
 import OpenAI from "openai";
 import z from "zod";
 
+import { OPENAI_DEFAULT_VOICE_MODEL } from "@cw/shared";
+
 import { db } from "../../db";
 import { systemSettings, transcript } from "../../db/schema";
 import { ENV } from "../../lib/env";
@@ -13,11 +15,11 @@ const openai = new OpenAI({
 });
 
 export const openaiVoiceRouter = router({
-	getEphemeralKey: publicProcedure.query(async () => {
+	getEphemeralKey: publicProcedure.mutation(async () => {
 		const result = await openai.realtime.clientSecrets.create({
 			session: {
 				type: "realtime",
-				model: "gpt-realtime",
+				model: OPENAI_DEFAULT_VOICE_MODEL,
 			},
 		});
 
@@ -29,7 +31,7 @@ export const openaiVoiceRouter = router({
 		return results.at(0) ?? null;
 	}),
 
-	upsertTranscript: publicProcedure
+	updateTranscript: publicProcedure
 		.input(
 			z.object({
 				sessionId: z.string(),

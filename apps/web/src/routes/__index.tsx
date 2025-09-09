@@ -1,12 +1,14 @@
 import { AppHeader } from "~/components/ui/app-header";
+import { ErrorBoundary } from "~/components/ui/error-boundary";
+import { VoiceSurvey } from "~/workflows/voice-survey";
 
 export default function HomeRoute() {
 	return (
 		<>
 			<AppHeader />
-			<main className="mx-auto max-w-7xl p-4">
-				<h1 className="font-bold text-2xl">Home</h1>
-			</main>
+			<ErrorBoundary>
+				<VoiceSurvey />
+			</ErrorBoundary>
 		</>
 	);
 }
