@@ -27,7 +27,7 @@ import { VoiceSelect } from "./voice";
 
 export function AdminSettingsForm() {
 	const { data: currentSettings } = useQuery(
-		trpc.admin.getSystemSettings.queryOptions(),
+		trpc.openaiVoice.getSystemSettings.queryOptions(),
 	);
 
 	const form = useForm<z.infer<typeof systemSettingsFormSchema>>({
@@ -35,7 +35,10 @@ export function AdminSettingsForm() {
 		defaultValues: {
 			voiceId: currentSettings?.voiceId ?? "",
 			voiceSpeed: currentSettings?.voiceSpeed ?? 1,
-			welcomeMessage: currentSettings?.welcomeMessage ?? "",
+			endingNote: currentSettings?.endingNote ?? "",
+			eventInfo: currentSettings?.eventInfo ?? "",
+			extraInstructions: currentSettings?.extraInstructions ?? "",
+			welcomeNote: currentSettings?.welcomeNote ?? "",
 			questions: currentSettings?.questions ?? defaultQuestions,
 		},
 	});
@@ -86,17 +89,52 @@ export function AdminSettingsForm() {
 					/>
 					<FormField
 						control={form.control}
-						name="welcomeMessage"
+						name="eventInfo"
+						render={({ field }) => (
+							<FormItem className="col-span-full">
+								<FormLabel>Event Info</FormLabel>
+								<FormControl>
+									<Textarea {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="extraInstructions"
+						render={({ field }) => (
+							<FormItem className="col-span-full">
+								<FormLabel>Extra Instructions</FormLabel>
+								<FormControl>
+									<Textarea {...field} value={field.value || ""} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="welcomeNote"
 						render={({ field }) => (
 							<FormItem className="col-span-full">
 								<FormLabel>Welcome Message</FormLabel>
 								<FormControl>
 									<Textarea {...field} />
 								</FormControl>
-								<FormDescription>
-									The welcome message to speak to the user when they start the
-									conversation.
-								</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="endingNote"
+						render={({ field }) => (
+							<FormItem className="col-span-full">
+								<FormLabel>Ending Message</FormLabel>
+								<FormControl>
+									<Textarea {...field} value={field.value || ""} />
+								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}

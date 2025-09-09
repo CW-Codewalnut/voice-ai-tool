@@ -7,7 +7,7 @@ export const systemSettings = sqliteTable("system_settings", {
 	voiceId: text().notNull(),
 	voiceSpeed: integer({ mode: "number" }).notNull(),
 	eventInfo: text().notNull(),
-	extraInfo: text(),
+	extraInstructions: text(),
 	welcomeNote: text().notNull(),
 	endingNote: text(),
 	questions: text({ mode: "json" }).$type<{ content: string }[]>().notNull(),

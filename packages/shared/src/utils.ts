@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const zodString = z.string().min(1);
-const zodNullableString = zodString.nullable().default(null);
+const zodNullableString = zodString.nullish();
 
 export const systemSettingsFormSchema = z.object({
 	voiceId: z.string(),

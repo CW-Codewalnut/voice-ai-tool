@@ -55,7 +55,7 @@ CREATE TABLE `system_settings` (
 	`voiceId` text NOT NULL,
 	`voiceSpeed` integer NOT NULL,
 	`eventInfo` text NOT NULL,
-	`extraInfo` text,
+	`extraInstructions` text,
 	`welcomeNote` text NOT NULL,
 	`endingNote` text,
 	`questions` text NOT NULL,
