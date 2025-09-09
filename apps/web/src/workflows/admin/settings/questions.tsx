@@ -9,7 +9,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/textarea";
 
 import type { SettingsFormElemProps } from "./utils";
 import { ViewPrompt } from "./view-prompt";
@@ -31,7 +31,7 @@ export function QuestionsForm({ formControl }: SettingsFormElemProps) {
 							<FormItem className="flex-1">
 								<FormLabel>Question {index + 1}</FormLabel>
 								<FormControl>
-									<Input {...field} />
+									<Textarea {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

@@ -91,7 +91,7 @@ export function AdminSettingsForm() {
 						control={form.control}
 						name="eventInfo"
 						render={({ field }) => (
-							<FormItem className="col-span-full">
+							<FormItem>
 								<FormLabel>Event Info</FormLabel>
 								<FormControl>
 									<Textarea {...field} />
@@ -104,7 +104,7 @@ export function AdminSettingsForm() {
 						control={form.control}
 						name="extraInstructions"
 						render={({ field }) => (
-							<FormItem className="col-span-full">
+							<FormItem>
 								<FormLabel>Extra Instructions</FormLabel>
 								<FormControl>
 									<Textarea {...field} value={field.value || ""} />
@@ -117,7 +117,7 @@ export function AdminSettingsForm() {
 						control={form.control}
 						name="welcomeNote"
 						render={({ field }) => (
-							<FormItem className="col-span-full">
+							<FormItem>
 								<FormLabel>Welcome Message</FormLabel>
 								<FormControl>
 									<Textarea {...field} />
@@ -130,7 +130,7 @@ export function AdminSettingsForm() {
 						control={form.control}
 						name="endingNote"
 						render={({ field }) => (
-							<FormItem className="col-span-full">
+							<FormItem>
 								<FormLabel>Ending Message</FormLabel>
 								<FormControl>
 									<Textarea {...field} value={field.value || ""} />

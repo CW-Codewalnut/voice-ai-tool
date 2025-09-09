@@ -43,13 +43,13 @@ export function VoiceSelect({ formControl }: SettingsFormElemProps) {
 						value={field.value}
 					>
 						<FormControl>
-							<SelectTrigger className="w-full">
+							<SelectTrigger className="w-full capitalize">
 								<SelectValue placeholder="Select a voice" />
 							</SelectTrigger>
 						</FormControl>
 						<SelectContent>
 							{VOICES.map((voice) => (
-								<SelectItem key={voice} value={voice}>
+								<SelectItem className="capitalize" key={voice} value={voice}>
 									{voice}
 								</SelectItem>
 							))}
