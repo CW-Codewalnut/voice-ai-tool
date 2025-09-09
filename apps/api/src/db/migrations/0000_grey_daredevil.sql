@@ -53,10 +53,13 @@ CREATE TABLE `system_settings` (
 	`createdAt` integer NOT NULL,
 	`updatedAt` integer NOT NULL,
 	`voiceId` text NOT NULL,
-	`systemPrompt` text NOT NULL,
 	`voiceSpeed` integer NOT NULL,
-	`welcomeMessage` text NOT NULL,
-	`questions` text NOT NULL
+	`eventInfo` text NOT NULL,
+	`extraInfo` text,
+	`welcomeNote` text NOT NULL,
+	`endingNote` text,
+	`questions` text NOT NULL,
+	`systemPrompt` text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `transcript` (

@@ -1,7 +1,7 @@
 {
 	"version": "6",
 	"dialect": "sqlite",
-	"id": "cd82871c-7445-4193-b369-0fc40f55bb54",
+	"id": "5f773e80-9cfb-4377-9d73-b94af3a90634",
 	"prevId": "00000000-0000-0000-0000-000000000000",
 	"tables": {
 		"account": {
@@ -345,13 +345,6 @@
 					"notNull": true,
 					"autoincrement": false
 				},
-				"systemPrompt": {
-					"name": "systemPrompt",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": true,
-					"autoincrement": false
-				},
 				"voiceSpeed": {
 					"name": "voiceSpeed",
 					"type": "integer",
@@ -359,15 +352,43 @@
 					"notNull": true,
 					"autoincrement": false
 				},
-				"welcomeMessage": {
-					"name": "welcomeMessage",
+				"eventInfo": {
+					"name": "eventInfo",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": true,
 					"autoincrement": false
 				},
+				"extraInfo": {
+					"name": "extraInfo",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false,
+					"autoincrement": false
+				},
+				"welcomeNote": {
+					"name": "welcomeNote",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"endingNote": {
+					"name": "endingNote",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false,
+					"autoincrement": false
+				},
 				"questions": {
 					"name": "questions",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"systemPrompt": {
+					"name": "systemPrompt",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": true,
