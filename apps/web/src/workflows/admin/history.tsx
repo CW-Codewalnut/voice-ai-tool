@@ -16,7 +16,7 @@ export function TranscriptsHistory() {
 
 	return (
 		<section>
-			<h2 className="mb-4">Transcripts</h2>
+			<h2 className="sr-only">Transcripts</h2>
 			<ul className="flex flex-col gap-4">
 				{history?.map?.((item) => (
 					<li key={item.id}>

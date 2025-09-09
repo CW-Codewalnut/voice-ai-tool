@@ -5,7 +5,7 @@ import { Toaster } from "./toaster";
 export function AppProviders({ children }: { children: React.ReactNode }) {
 	return (
 		<QueryProvider>
-			<ThemeProvider defaultTheme="system">
+			<ThemeProvider defaultTheme="light">
 				{children}
 				<Toaster richColors />
 			</ThemeProvider>

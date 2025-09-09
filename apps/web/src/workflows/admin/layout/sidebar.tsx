@@ -20,7 +20,7 @@ export function AdminSidebar() {
 			<SidebarHeader className="border-b">
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<p className="px-2 py-2.5 font-bold text-xl">Admin</p>
+						<p className="p-2 font-bold text-2xl">Admin</p>
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
