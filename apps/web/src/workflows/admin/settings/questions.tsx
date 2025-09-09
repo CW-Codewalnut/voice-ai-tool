@@ -12,7 +12,6 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 
 import type { SettingsFormElemProps } from "./utils";
-import { ViewPrompt } from "./view-prompt";
 
 export function QuestionsForm({ formControl }: SettingsFormElemProps) {
 	const { fields, append, remove } = useFieldArray({
@@ -49,7 +48,6 @@ export function QuestionsForm({ formControl }: SettingsFormElemProps) {
 				</div>
 			))}
 			<div className="flex items-center justify-between gap-4">
-				<ViewPrompt questions={fields} />
 				<Button
 					className="mt-2 w-max self-end"
 					onClick={() => append({ content: "" })}

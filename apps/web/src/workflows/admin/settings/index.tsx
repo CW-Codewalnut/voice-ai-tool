@@ -17,6 +17,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from "~/components/ui/form";
+import { PageSpinner } from "~/components/ui/page-spinner";
 import { Slider } from "~/components/ui/slider";
 import { Textarea } from "~/components/ui/textarea";
 import { trpc } from "~/lib/trpc";
@@ -26,20 +27,19 @@ import { MAX_VOICE_SPEED, MIN_VOICE_SPEED } from "./utils";
 import { VoiceSelect } from "./voice";
 
 export function AdminSettingsForm() {
-	const { data: currentSettings } = useQuery(
-		trpc.openaiVoice.getSystemSettings.queryOptions(),
-	);
+	const { data: currentSettings, isLoading: isSystemSettingsLoading } =
+		useQuery(trpc.openaiVoice.getSystemSettings.queryOptions());
 
 	const form = useForm<z.infer<typeof systemSettingsFormSchema>>({
 		resolver: zodResolver(systemSettingsFormSchema),
 		defaultValues: {
-			voiceId: currentSettings?.voiceId ?? "",
-			voiceSpeed: currentSettings?.voiceSpeed ?? 1,
-			endingNote: currentSettings?.endingNote ?? "",
-			eventInfo: currentSettings?.eventInfo ?? "",
-			extraInstructions: currentSettings?.extraInstructions ?? "",
-			welcomeNote: currentSettings?.welcomeNote ?? "",
-			questions: currentSettings?.questions ?? defaultQuestions,
+			voiceId: currentSettings?.voiceId,
+			voiceSpeed: currentSettings?.voiceSpeed,
+			endingNote: currentSettings?.endingNote,
+			eventInfo: currentSettings?.eventInfo,
+			extraInstructions: currentSettings?.extraInstructions,
+			welcomeNote: currentSettings?.welcomeNote,
+			questions: currentSettings?.questions,
 		},
 	});
 
@@ -51,6 +51,10 @@ export function AdminSettingsForm() {
 			form.reset(currentSettings);
 		}
 	}, [currentSettings, form]);
+
+	if (isSystemSettingsLoading) {
+		return <PageSpinner className="h-[calc(100svh-8rem)]" />;
+	}
 
 	function onSubmit(values: SystemSettingsFormInput) {
 		updateSettings(values);
@@ -152,5 +156,3 @@ export function AdminSettingsForm() {
 		</section>
 	);
 }
-
-const defaultQuestions = [{ content: "" }, { content: "" }, { content: "" }];

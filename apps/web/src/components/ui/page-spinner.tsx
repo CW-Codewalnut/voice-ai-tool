@@ -2,9 +2,9 @@ import { LoaderIcon } from "lucide-react";
 
 import { PageCenter } from "~/components/ui/page-center";
 
-export function PageSpinner() {
+export function PageSpinner({ className = "" }) {
 	return (
-		<PageCenter>
+		<PageCenter className={className}>
 			<LoaderIcon className="animate-spin" />
 		</PageCenter>
 	);
