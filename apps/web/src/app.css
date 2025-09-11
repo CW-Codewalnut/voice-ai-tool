@@ -177,3 +177,8 @@
 	animation: wave-animation 1s ease-in-out infinite;
 	animation-delay: 0.4s;
 }
+
+.animate-wave-delay-5 {
+	animation: wave-animation 1s ease-in-out infinite;
+	animation-delay: 0.5s;
+}
