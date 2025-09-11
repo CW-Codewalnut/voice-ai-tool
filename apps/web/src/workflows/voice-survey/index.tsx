@@ -1,4 +1,9 @@
-import { PauseIcon, PlayIcon, RefreshCcwIcon, SquareIcon } from "lucide-react";
+import {
+	PauseIcon,
+	PhoneOffIcon,
+	PlayIcon,
+	RefreshCcwIcon,
+} from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "~/components/ui/button";
@@ -69,7 +74,7 @@ export function VoiceSurvey() {
 								)}
 							</Button>
 							<Button onClick={handleEndCall} size="lg" variant="destructive">
-								<SquareIcon />
+								<PhoneOffIcon />
 								End Call
 							</Button>
 						</>

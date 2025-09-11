@@ -8,7 +8,7 @@ export function CodeWalnutIcon({ className = "" }) {
 			width="117"
 			xmlns="http://www.w3.org/2000/svg"
 		>
-			<title>CodeWalnut Icon</title>
+			<title>CodeWalnut Logo</title>
 			<g clipPath="url(#a)">
 				<mask
 					height="46"

@@ -222,6 +222,6 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 }
 
 const userMessagesOnBehalfOfSystem = {
-	agentInitiate: "Begin the conversation (System prompt)",
-	resumeConversation: "Please continue the conversation (System Prompt)",
+	agentInitiate: "Begin the conversation",
+	resumeConversation: "Please continue the conversation",
 } as const;

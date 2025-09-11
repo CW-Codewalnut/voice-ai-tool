@@ -32,7 +32,7 @@ export function TranscriptsHistory() {
 											<li key={item.itemId}>
 												{item.type === "message" ? (
 													<>
-														<span className="font-bold text-foreground">
+														<span className="font-bold text-foreground capitalize">
 															{item.role}:{" "}
 														</span>
 														{item.content.map((i) => {
