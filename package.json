@@ -20,7 +20,6 @@
 		"start:web": "turbo run start --filter=@cw/web",
 		"dev:web": "turbo run dev --filter=@cw/web",
 		"dev:api": "turbo run dev --filter=@cw/api",
-		"db:local": "turbo run db:local --filter=@cw/api",
 		"db:studio": "turbo run db:studio --filter=@cw/api",
 		"db:push": "turbo run db:push --filter=@cw/api",
 		"db:generate": "turbo run db:generate --filter=@cw/api",
