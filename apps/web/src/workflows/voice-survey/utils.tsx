@@ -14,11 +14,6 @@ export type SurveyState =
 	| "completed"
 	| "error";
 
-export const userMessagesOnBehalfOfSystem = {
-	agentInitiate: "Begin the conversation (System prompt)",
-	resumeConversation: "Please continue the conversation (System Prompt)",
-} as const;
-
 type StateConfig = {
 	icon: React.ReactNode;
 	title: string;

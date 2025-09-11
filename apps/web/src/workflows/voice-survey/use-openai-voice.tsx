@@ -1,27 +1,34 @@
-import type { RealtimeItem } from "@openai/agents/realtime";
+import type { RealtimeItem, TransportEvent } from "@openai/agents/realtime";
 import { RealtimeAgent, RealtimeSession } from "@openai/agents/realtime";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { OPENAI_DEFAULT_VOICE_MODEL } from "@cw/shared";
 
 import { trpc } from "~/lib/trpc";
 
+import { endConversationTool } from "./tools";
 import type { SurveyState } from "./utils";
-import { userMessagesOnBehalfOfSystem } from "./utils";
 
 type UseOpenAIVoiceOptions = {
 	shouldAgentInitiate: boolean;
 };
 
-export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
-	const sessionId = useMemo(() => {
-		return nanoid(27);
-	}, []);
+type VoiceClient = RealtimeSession<{
+	history: RealtimeItem[];
+}>;
 
+function generateSessionId() {
+	return nanoid(27);
+}
+
+export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
+	const endToolCalledRef = useRef(false);
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const [sessionId, setSessionId] = useState(generateSessionId());
 	const [surveyState, setSurveyState] = useState<SurveyState>("idle");
-	const [voiceClient, setVoiceClient] = useState<RealtimeSession | null>(null);
+	const [voiceClient, setVoiceClient] = useState<VoiceClient | null>(null);
 
 	const { data: systemSettings } = useQuery(
 		trpc.openaiVoice.getSystemSettings.queryOptions(),
@@ -39,22 +46,28 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 		}
 
 		try {
-			const openAIAccessToken = await getEphemeralKey();
-
 			setSurveyState("initializing");
+			const openAIAccessToken = await getEphemeralKey();
 
 			const voiceAgent = new RealtimeAgent({
 				name: "Survey Assistant",
-				instructions: `${systemSettings.systemPrompt}`,
+				instructions: systemSettings.systemPrompt,
+				tools: [endConversationTool],
 			});
 
 			const voiceAgentSession = new RealtimeSession(voiceAgent, {
 				model: OPENAI_DEFAULT_VOICE_MODEL,
 				config: {
-					voice: systemSettings.voiceId,
-					speed: systemSettings.voiceSpeed,
-					inputAudioTranscription: {
-						model: "whisper-1",
+					audio: {
+						output: {
+							voice: systemSettings.voiceId,
+							speed: systemSettings.voiceSpeed,
+						},
+						input: {
+							transcription: {
+								model: "whisper-1",
+							},
+						},
 					},
 				},
 			});
@@ -87,54 +100,50 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 
 	const pauseConversation = useCallback(() => {
 		if (voiceClient && surveyState !== "paused") {
-			try {
-				voiceClient.interrupt();
-				voiceClient.mute(true);
-				setSurveyState("paused");
-			} catch (error) {
-				console.log("Error pausing conversation:", error);
-			}
+			voiceClient.interrupt();
+			voiceClient.mute(true);
+			setSurveyState("paused");
 		}
 	}, [voiceClient, surveyState]);
 
 	const resumeConversation = useCallback(() => {
 		if (voiceClient && surveyState === "paused") {
-			try {
-				voiceClient.mute(false);
-				setSurveyState("listening");
+			voiceClient.mute(false);
+			setSurveyState("listening");
 
-				voiceClient.sendMessage({
-					role: "user",
-					type: "message",
-					content: [
-						{
-							text: userMessagesOnBehalfOfSystem.resumeConversation,
-							type: "input_text",
-						},
-					],
-				});
-			} catch (error) {
-				console.log("Error resuming conversation:", error);
-			}
+			voiceClient.sendMessage({
+				role: "user",
+				type: "message",
+				content: [
+					{
+						text: userMessagesOnBehalfOfSystem.resumeConversation,
+						type: "input_text",
+					},
+				],
+			});
 		}
 	}, [voiceClient, surveyState]);
 
 	const handlePauseResumeCall = useCallback(() => {
 		if (surveyState === "listening") {
 			pauseConversation();
-		} else {
+		} else if (surveyState === "paused") {
 			resumeConversation();
 		}
 	}, [surveyState, pauseConversation, resumeConversation]);
 
 	const handleEndCall = useCallback(() => {
-		try {
-			voiceClient?.close();
-			setSurveyState("completed");
-		} catch (error) {
-			console.log("Error ending call:", error);
-		}
+		voiceClient?.close();
+		setVoiceClient(null);
+		setSurveyState("completed");
 	}, [voiceClient]);
+
+	const handleRestartCall = useCallback(() => {
+		setSessionId(generateSessionId());
+		endToolCalledRef.current = false;
+		setVoiceClient(null);
+		startSurvey();
+	}, [startSurvey]);
 
 	useEffect(() => {
 		if (surveyState !== "listening" || !voiceClient) {
@@ -148,31 +157,52 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 		}
 
 		function handleHistoryUpdated(history: RealtimeItem[]) {
-			// updateTranscript({
-			// 	sessionId,
-			// 	content: history,
-			// });
+			updateTranscript({
+				sessionId,
+				content: history,
+			});
+		}
+
+		function handleToolApprovalRequested() {
+			endToolCalledRef.current = true;
+		}
+
+		function handleTransportEvent(event: TransportEvent) {
+			if (
+				event.type === "output_audio_buffer.stopped" &&
+				endToolCalledRef.current
+			) {
+				timeoutRef.current = setTimeout(() => {
+					voiceClient?.close();
+					setVoiceClient(null);
+					setSurveyState("completed");
+				}, 1000);
+			}
 		}
 
 		voiceClient.on("error", handleError);
 		voiceClient.on("history_updated", handleHistoryUpdated);
+		voiceClient.on("tool_approval_requested", handleToolApprovalRequested);
+		voiceClient.on("transport_event", handleTransportEvent);
 
 		return () => {
 			voiceClient.off("error", handleError);
 			voiceClient.off("history_updated", handleHistoryUpdated);
+			voiceClient.off("tool_approval_requested", handleToolApprovalRequested);
+			voiceClient.off("transport_event", handleTransportEvent);
 		};
-	}, [surveyState, voiceClient, sessionId, updateTranscript]);
+	}, [surveyState, voiceClient, updateTranscript, sessionId]);
 
 	useEffect(() => {
 		return () => {
 			if (voiceClient) {
-				try {
-					voiceClient?.close();
-					setVoiceClient(null);
-					setSurveyState("completed");
-				} catch (error) {
-					console.log("Error closing voice client:", error);
-				}
+				voiceClient?.close();
+				setVoiceClient(null);
+				setSurveyState("completed");
+			}
+
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
 			}
 		};
 	}, [voiceClient]);
@@ -181,6 +211,12 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 		surveyState,
 		startSurvey,
 		handleEndCall,
+		handleRestartCall,
 		handlePauseResumeCall,
 	};
 }
+
+const userMessagesOnBehalfOfSystem = {
+	agentInitiate: "Begin the conversation (System prompt)",
+	resumeConversation: "Please continue the conversation (System Prompt)",
+} as const;
