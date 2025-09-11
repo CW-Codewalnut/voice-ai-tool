@@ -1,4 +1,4 @@
-import { PauseIcon, PlayIcon, SquareIcon } from "lucide-react";
+import { PauseIcon, PlayIcon, RefreshCcwIcon, SquareIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "~/components/ui/button";
@@ -10,10 +10,15 @@ import { surveyStateConfig } from "./utils";
 export function VoiceSurvey() {
 	const [shouldAgentInitiate, _setShouldAgentInitiate] = useState(true);
 
-	const { surveyState, startSurvey, handleEndCall, handlePauseResumeCall } =
-		useOpenAIVoice({
-			shouldAgentInitiate,
-		});
+	const {
+		surveyState,
+		startSurvey,
+		handleEndCall,
+		handleRestartCall,
+		handlePauseResumeCall,
+	} = useOpenAIVoice({
+		shouldAgentInitiate,
+	});
 
 	const voiceClientState = surveyStateConfig[surveyState];
 
@@ -68,6 +73,11 @@ export function VoiceSurvey() {
 								End Call
 							</Button>
 						</>
+					) : surveyState === "completed" ? (
+						<Button onClick={handleRestartCall} size="lg">
+							<RefreshCcwIcon />
+							Restart Call
+						</Button>
 					) : (
 						<div aria-hidden className="size-10 opacity-0" />
 					)}
