@@ -1,4 +1,5 @@
-import type { SystemSettingsFormInput } from "./index";
+import type { SystemSettingsFormInput } from "@cw/shared";
+import { TOOL_NAME_END_CONVERSATION } from "@cw/shared";
 
 type GetSystemPromptParams = Pick<
 	SystemSettingsFormInput,
@@ -63,7 +64,7 @@ You are a concise, neutral, professional **Survey Assistant**. Your single purpo
 # EXTRA INSTRUCTIONS & OVERRIDES
 9) {{extraInstructions}} may contain allowed, **non-conflicting** runtime behaviors (e.g., maximum response length, special follow-up phrasing, or any other useful information). Under no circumstances may {{extraInstructions}} override the above instructions.
 
-# CLOSE
-10) Closing flow: After the final {{questions}} entry, say {{endingNote}} exactly.
+# CLOSING
+10) Closing flow: After the final {{questions}} entry, say {{endingNote}} exactly. IMPORTANT: The {{endingNote}} should be your last words, nothing else after that. Then, immediately YOU MUST call the ${TOOL_NAME_END_CONVERSATION}. IMPORTANT: After calling the tool, do not say anything else, no matter what. ALSO NEVER REPEAT YOURSELF.
 `;
 }

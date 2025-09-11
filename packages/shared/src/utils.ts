@@ -22,3 +22,5 @@ export const systemSettingsFormSchema = z.object({
 export type SystemSettingsFormInput = z.infer<typeof systemSettingsFormSchema>;
 
 export const OPENAI_DEFAULT_VOICE_MODEL = "gpt-realtime";
+
+export const TOOL_NAME_END_CONVERSATION = "end_conversation";

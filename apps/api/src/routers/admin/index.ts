@@ -1,10 +1,11 @@
 import { desc } from "drizzle-orm";
 
-import { getSystemPrompt, systemSettingsFormSchema } from "@cw/shared";
+import { systemSettingsFormSchema } from "@cw/shared";
 
 import { db } from "../../db";
 import { systemSettings, transcript } from "../../db/schema";
 import { protectedProcedure, router } from "../../lib/trpc";
+import { getSystemPrompt } from "./prompt";
 
 export const adminRouter = router({
 	getAllTranscripts: protectedProcedure.query(async () => {
