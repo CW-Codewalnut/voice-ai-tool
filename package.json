@@ -23,7 +23,8 @@
 		"db:studio": "turbo run db:studio --filter=@cw/api",
 		"db:push": "turbo run db:push --filter=@cw/api",
 		"db:generate": "turbo run db:generate --filter=@cw/api",
-		"db:migrate": "turbo run db:migrate --filter=@cw/api"
+		"db:migrate": "turbo run db:migrate --filter=@cw/api",
+		"setup": "bun scripts/setup.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.4",
