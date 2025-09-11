@@ -28,7 +28,11 @@ import { VoiceSelect } from "./voice";
 
 export function AdminSettingsForm() {
 	const { data: currentSettings, isLoading: isSystemSettingsLoading } =
-		useQuery(trpc.openaiVoice.getSystemSettings.queryOptions());
+		useQuery(
+			trpc.openaiVoice.getSystemSettings.queryOptions(undefined, {
+				staleTime: Infinity,
+			}),
+		);
 
 	const form = useForm<z.infer<typeof systemSettingsFormSchema>>({
 		resolver: zodResolver(systemSettingsFormSchema),
@@ -65,7 +69,7 @@ export function AdminSettingsForm() {
 			<h2 className="sr-only">System Settings</h2>
 			<Form {...form}>
 				<form
-					className="grid grid-cols-1 gap-8 md:grid-cols-2"
+					className="grid grid-cols-1 gap-8 md:grid-cols-2 [&_textarea]:max-h-28 [&_textarea]:min-h-28"
 					onSubmit={form.handleSubmit(onSubmit)}
 				>
 					<VoiceSelect formControl={form.control} />
