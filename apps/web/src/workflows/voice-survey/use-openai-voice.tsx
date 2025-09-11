@@ -23,10 +23,13 @@ function generateSessionId() {
 	return nanoid(27);
 }
 
+const MIN_HISTORY_THRESHOLD = 1;
+const END_TOOL_CALLED_TIMEOUT = 1000;
+
 export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 	const endToolCalledRef = useRef(false);
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const [sessionId, setSessionId] = useState(generateSessionId());
+	const [sessionId, setSessionId] = useState(generateSessionId);
 	const [surveyState, setSurveyState] = useState<SurveyState>("idle");
 	const [voiceClient, setVoiceClient] = useState<VoiceClient | null>(null);
 
@@ -157,10 +160,12 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 		}
 
 		function handleHistoryUpdated(history: RealtimeItem[]) {
-			updateTranscript({
-				sessionId,
-				content: history,
-			});
+			if (history.length > MIN_HISTORY_THRESHOLD) {
+				updateTranscript({
+					sessionId,
+					content: history,
+				});
+			}
 		}
 
 		function handleToolApprovalRequested() {
@@ -176,7 +181,7 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 					voiceClient?.close();
 					setVoiceClient(null);
 					setSurveyState("completed");
-				}, 1000);
+				}, END_TOOL_CALLED_TIMEOUT);
 			}
 		}
 
