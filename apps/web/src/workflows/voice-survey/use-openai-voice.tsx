@@ -23,13 +23,13 @@ function generateSessionId() {
 	return nanoid(27);
 }
 
-const MIN_HISTORY_THRESHOLD = 2;
+const MIN_HISTORY_THRESHOLD = 3;
 const END_TOOL_CALLED_TIMEOUT = 1000;
 
 export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 	const endToolCalledRef = useRef(false);
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const [sessionId, setSessionId] = useState(generateSessionId);
+	const sessionIdRef = useRef(generateSessionId());
 	const [surveyState, setSurveyState] = useState<SurveyState>("idle");
 	const [voiceClient, setVoiceClient] = useState<VoiceClient | null>(null);
 
@@ -41,6 +41,16 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 	);
 	const { mutateAsync: getEphemeralKey } = useMutation(
 		trpc.openaiVoice.getEphemeralKey.mutationOptions(),
+	);
+
+	const handleUpdateTranscript = useCallback(
+		(content: RealtimeItem[]) => {
+			updateTranscript({
+				content,
+				sessionId: sessionIdRef.current,
+			});
+		},
+		[updateTranscript],
 	);
 
 	const startSurvey = useCallback(async () => {
@@ -142,7 +152,7 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 	}, [voiceClient]);
 
 	const handleRestartCall = useCallback(() => {
-		setSessionId(generateSessionId());
+		sessionIdRef.current = generateSessionId();
 		endToolCalledRef.current = false;
 		setVoiceClient(null);
 		startSurvey();
@@ -161,10 +171,7 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 
 		function handleHistoryUpdated(history: RealtimeItem[]) {
 			if (history.length > MIN_HISTORY_THRESHOLD) {
-				updateTranscript({
-					sessionId,
-					content: history,
-				});
+				handleUpdateTranscript(history);
 			}
 		}
 
@@ -196,7 +203,7 @@ export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
 			voiceClient.off("tool_approval_requested", handleToolApprovalRequested);
 			voiceClient.off("transport_event", handleTransportEvent);
 		};
-	}, [surveyState, voiceClient, updateTranscript, sessionId]);
+	}, [surveyState, voiceClient, handleUpdateTranscript]);
 
 	useEffect(() => {
 		return () => {
