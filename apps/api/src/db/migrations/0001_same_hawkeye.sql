@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `transcript_sessionId_unique` ON `transcript` (`sessionId`);

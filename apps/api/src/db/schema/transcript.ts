@@ -5,6 +5,6 @@ import { commonTableCols } from "./utils";
 
 export const transcript = sqliteTable("transcript", {
 	...commonTableCols,
-	sessionId: text().notNull(),
+	sessionId: text().notNull().unique(),
 	content: text({ mode: "json" }).$type<RealtimeItem[]>(),
 });
