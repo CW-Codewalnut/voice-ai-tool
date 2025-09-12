@@ -23,7 +23,7 @@ function generateSessionId() {
 	return nanoid(27);
 }
 
-const MIN_HISTORY_THRESHOLD = 1;
+const MIN_HISTORY_THRESHOLD = 2;
 const END_TOOL_CALLED_TIMEOUT = 1000;
 
 export function useOpenAIVoice({ shouldAgentInitiate }: UseOpenAIVoiceOptions) {
