@@ -43,7 +43,8 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
 ## Product Features
 
 - **Admin Dashboard**
-  - Secure Google OAuth login configured to be accessed only within the organization.
+  - Secure Google OAuth login with email-based admin authorization.
+  - Configurable admin access through environment variables - only specified email addresses can access admin features.
   - Intuitive interface to configure the AI's persona, including event information, welcome/ending messages, and special instructions.
   - Dynamic form to add, remove, and edit survey questions.
   - Selection of different model voices and speech speed.
@@ -150,6 +151,7 @@ The project is a monorepo managed by Turborepo and Bun Workspaces.
     | ----------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
     | `APP_PORT` | Port for the backend server. | `5000` |
     | `APP_URL` | Full public URL of the backend. | `http://localhost:5000` |
+    | `ADMIN_EMAILS` | Semicolon-separated list of admin email addresses who can access admin features. | `admin@example.com;admin2@example.com` |
     | `CORS_ORIGIN_1` | The URL of your frontend app to allow CORS. | `http://localhost:3000` |
     | `DATABASE_URL` | Turso DB URL or local file path. | `file:./.database/local.db` |
     | `DATABASE_AUTH_TOKEN` | Turso auth token (leave blank for local file DB). | `your-turso-token` |
