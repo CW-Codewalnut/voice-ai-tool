@@ -1,7 +1,17 @@
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
+
 import { getSystemPrompt } from "../routers/admin/prompt";
-import { db } from "./index";
 import sampleSettings from "./sample-settings.json";
 import { systemSettings } from "./schema";
+
+// since we will be running this as part of setup script, we need to use process.env
+// instead of using the db from the index file
+const db = drizzle({
+	client: createClient({
+		url: process.env.DATABASE_URL ?? "",
+	}),
+});
 
 async function seed() {
 	console.log("🌱 Seeding database...");
