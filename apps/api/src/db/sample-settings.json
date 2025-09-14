@@ -1,0 +1,19 @@
+{
+	"voiceId": "marin",
+	"voiceSpeed": 1.25,
+	"eventInfo": "Webinar on AI for C-Suite executives. The webinar is happening on 25th July 2025, 3 PM IST online.",
+	"extraInstructions": "If a user asks a question that you cannot answer, but it is *still about the webinar*, you must redirect them. Say: \"That's an excellent question, but I don't have the specific details on that. For anything more in-depth, please feel free to email our team at info@example.com, and they'll be happy to help you.\"",
+	"welcomeNote": "Hi there! Thank you so much for registering for this hands on AI webinar. We're keen you become an AI expert.",
+	"endingNote": "Thank You. Got more questions? Just drop a mail to info@example.com. See you at the webinar.",
+	"questions": [
+		{
+			"content": "I'm curious - are you currently exploring how AI can help or actively deploying AI in your business?"
+		},
+		{
+			"content": "Which of these topics sounds most interesting to you? You can just say A, B, or C. \nA: Real world use cases where AI can help \nB: Understanding the bigger picture — AI strategy and roadmap\nC: interested in both these topics"
+		},
+		{
+			"content": "Do you have any other expectations for the webinar ?"
+		}
+	]
+}

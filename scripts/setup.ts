@@ -19,6 +19,10 @@ try {
 	await $`bun db:migrate`;
 	console.log("✅ Database migration completed successfully.");
 
+	console.log("Seeding database...");
+	await $`bun db:seed`;
+	console.log("✅ Database seeded successfully.");
+
 	console.log("\n🚀 Project setup complete!");
 	console.log(
 		"\nPaste the appropriate environment variables into your .env files.",
