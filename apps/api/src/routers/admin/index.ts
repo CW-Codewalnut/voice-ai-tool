@@ -15,6 +15,11 @@ export const adminRouter = router({
 			.orderBy(desc(transcript.createdAt));
 	}),
 
+	getSystemSettings: protectedProcedure.query(async () => {
+		const results = await db.select().from(systemSettings);
+		return results.at(0) ?? null;
+	}),
+
 	createSystemSettings: protectedProcedure
 		.input(systemSettingsFormSchema)
 		.mutation(async ({ input }) => {

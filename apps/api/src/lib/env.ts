@@ -19,5 +19,7 @@ export const ENV = createEnv({
 
 		AUTH_SECRET: zodString,
 		OPENAI_API_KEY: zodString,
+
+		ADMIN_EMAILS: zodString.transform((val) => val.split(";")),
 	},
 });

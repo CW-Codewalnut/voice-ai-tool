@@ -27,12 +27,15 @@ import { MAX_VOICE_SPEED, MIN_VOICE_SPEED } from "./utils";
 import { VoiceSelect } from "./voice";
 
 export function AdminSettingsForm() {
-	const { data: currentSettings, isLoading: isSystemSettingsLoading } =
-		useQuery(
-			trpc.openaiVoice.getSystemSettings.queryOptions(undefined, {
-				staleTime: Infinity,
-			}),
-		);
+	const {
+		data: currentSettings,
+		isLoading: isSystemSettingsLoading,
+		isError: isSystemSettingsError,
+	} = useQuery(
+		trpc.admin.getSystemSettings.queryOptions(undefined, {
+			staleTime: Infinity,
+		}),
+	);
 
 	const form = useForm<z.infer<typeof systemSettingsFormSchema>>({
 		resolver: zodResolver(systemSettingsFormSchema),
@@ -58,6 +61,10 @@ export function AdminSettingsForm() {
 
 	if (isSystemSettingsLoading) {
 		return <PageSpinner className="h-[calc(100svh-8rem)]" />;
+	}
+
+	if (isSystemSettingsError) {
+		return null;
 	}
 
 	function onSubmit(values: SystemSettingsFormInput) {
