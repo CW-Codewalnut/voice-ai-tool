@@ -43,13 +43,13 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
 
 ##### Survey
 
-<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/429d6020-7b72-4a98-9586-ca35facfd86c" />
-<img width="1917" height="1002" alt="image" src="https://github.com/user-attachments/assets/410d54bf-eb6e-40bd-937c-a1497dd9b199" />
-<img width="1919" height="996" alt="image" src="https://github.com/user-attachments/assets/c8807932-b1cf-4e9e-bfd7-7c125e306089" />
+<img width="1915" height="1001" alt="initial UI state" src="https://github.com/user-attachments/assets/429d6020-7b72-4a98-9586-ca35facfd86c" />
+<img width="1917" height="1002" alt="conversation in progress UI state" src="https://github.com/user-attachments/assets/410d54bf-eb6e-40bd-937c-a1497dd9b199" />
+<img width="1919" height="996" alt="response submitted UI state" src="https://github.com/user-attachments/assets/c8807932-b1cf-4e9e-bfd7-7c125e306089" />
 
 ##### Configuration Panel
 
-<img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/aa399e4a-f30e-488a-8a58-57077514edd5" />
+<img width="1919" height="995" alt="system settings form" src="https://github.com/user-attachments/assets/aa399e4a-f30e-488a-8a58-57077514edd5" />
 
 ## Product Features
 
@@ -105,7 +105,10 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
 
 ### Architecture Diagram
 
-TODO: Add architecture diagram
+<img width="1920" height="1080" alt="high level architecture diagram of the application" src="https://github.com/user-attachments/assets/7fbf06f5-65b5-45b1-90ad-baac3b122671" />
+
+#### Sequence Diagram
+<img width="1712" height="1138" alt="mermaid sequence diagram of the application" src="https://github.com/user-attachments/assets/de98a22e-e93e-4dda-a66b-674c764edd12" />
 
 **Data Flow:**
 
