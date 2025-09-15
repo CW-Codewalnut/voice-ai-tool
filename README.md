@@ -1,6 +1,6 @@
 # Voice AI Survey Tool
 
-An free and open source self-hostable platform for creating and deploying conversational voice-based surveys powered by OpenAI's real-time models.
+A free and open source self-hostable platform for creating and deploying conversational voice-based surveys powered by OpenAI's real-time models.
 
 ### Key Features
 
@@ -42,14 +42,14 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
 #### Screenshots
 
 ##### Survey
+
 <img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/429d6020-7b72-4a98-9586-ca35facfd86c" />
 <img width="1917" height="1002" alt="image" src="https://github.com/user-attachments/assets/410d54bf-eb6e-40bd-937c-a1497dd9b199" />
 <img width="1919" height="996" alt="image" src="https://github.com/user-attachments/assets/c8807932-b1cf-4e9e-bfd7-7c125e306089" />
 
 ##### Configuration Panel
+
 <img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/aa399e4a-f30e-488a-8a58-57077514edd5" />
-
-
 
 ## Product Features
 
@@ -133,7 +133,7 @@ The project is a monorepo managed by Turborepo and Bun Workspaces.
 
 ### Prerequisites
 
-- [**Git**](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [**Git**](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 - [**Bun**](https://bun.sh/docs/installation): v1.2.20 or later.
 - [**OpenAI API Key**](https://platform.openai.com/api-keys).
 - [**Google OAuth Credentials**](https://console.cloud.google.com/apis/credentials).
