@@ -1,6 +1,6 @@
 # Voice AI Survey Tool
 
-An self-hosted platform for creating and deploying conversational voice-based surveys powered by OpenAI's real-time models.
+An free and open source self-hostable platform for creating and deploying conversational voice-based surveys powered by OpenAI's real-time models.
 
 ### Key Features
 
@@ -10,15 +10,12 @@ An self-hosted platform for creating and deploying conversational voice-based su
 - **📊 Transcript Review**: Access and review full transcripts of all completed survey sessions to analyze user feedback.
 - **🏗️ Modern Tech Stack**: Built with a fully type-safe, modern stack including React, Hono, tRPC, and Drizzle ORM.
 
-### Demo
-
-TODO: Add demo video & screenshots
-
 ## Table of Contents
 
 - [Overview & Problem Statement](#overview--problem-statement)
   - [The Problem](#the-problem)
   - [The Solution](#the-solution)
+- [Demo](#demo)
 - [Product Features](#product-features)
 - [Business Use Cases](#business-use-cases)
 - [Tech Stack & Architecture](#tech-stack--architecture)
@@ -39,6 +36,20 @@ Traditional web forms and text-based surveys often suffer from low engagement an
 ### The Solution
 
 This **Voice AI Survey Tool** transforms the survey experience by replacing static forms with dynamic, voice-driven conversations. An AI agent, powered by OpenAI Realtime models, engages users in a natural dialogue, asking predefined questions and capturing their spoken responses in real-time. This approach makes feedback collection more engaging, accessible, and capable of gathering richer, more detailed insights.
+
+## Demo
+
+#### Screenshots
+
+##### Survey
+<img width="1915" height="1001" alt="image" src="https://github.com/user-attachments/assets/429d6020-7b72-4a98-9586-ca35facfd86c" />
+<img width="1917" height="1002" alt="image" src="https://github.com/user-attachments/assets/410d54bf-eb6e-40bd-937c-a1497dd9b199" />
+<img width="1919" height="996" alt="image" src="https://github.com/user-attachments/assets/c8807932-b1cf-4e9e-bfd7-7c125e306089" />
+
+##### Configuration Panel
+<img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/aa399e4a-f30e-488a-8a58-57077514edd5" />
+
+
 
 ## Product Features
 
