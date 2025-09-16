@@ -1,18 +1,26 @@
+import { existsSync } from "node:fs";
 import { $ } from "bun";
 
 $.throws(true);
+
+async function copyIfMissing(src: string, dest: string) {
+	if (existsSync(dest)) {
+		console.log(`Skipping ${dest} (already exists)`);
+		return;
+	}
+	await $`cp -r ${src} ${dest}`;
+	console.log(`Created ${dest} from ${src}`);
+}
 
 try {
 	console.log("Installing dependencies...");
 	await $`bun install`;
 	console.log("✅ Dependencies installed successfully.");
 
-	console.log("Copying environment files...");
-	await Promise.all([
-		$`cp -r apps/api/.env.example apps/api/.env`,
-		$`cp -r apps/web/.env.example apps/web/.env`,
-	]);
-	console.log("✅ Environment files copied successfully.");
+	console.log("Copying environment files (will not overwrite existing)...");
+	await copyIfMissing("apps/api/.env.example", "apps/api/.env");
+	await copyIfMissing("apps/web/.env.example", "apps/web/.env");
+	console.log("✅ Environment files checked.");
 
 	console.log("Running database migration...");
 	await $`mkdir -p apps/api/.database`;
