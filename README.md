@@ -108,6 +108,7 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
 <img width="1920" height="1080" alt="high level architecture diagram of the application" src="https://github.com/user-attachments/assets/7fbf06f5-65b5-45b1-90ad-baac3b122671" />
 
 #### Sequence Diagram
+
 <img width="1712" height="1138" alt="mermaid sequence diagram of the application" src="https://github.com/user-attachments/assets/de98a22e-e93e-4dda-a66b-674c764edd12" />
 
 **Data Flow:**
@@ -151,7 +152,7 @@ The project is a monorepo managed by Turborepo and Bun Workspaces.
     ```
 
 2.  **Run the Setup Script**
-    This command will install all dependencies, copy the example `.env` files, and run the initial database migration & seed the DB with a sample system settings.
+    This command will install all dependencies, copy the example `.env` files if missing (it will NOT overwrite existing ones), and run the initial database migration & seed the DB with a sample system settings.
 
     ```bash
     bun setup
@@ -166,9 +167,9 @@ The project is a monorepo managed by Turborepo and Bun Workspaces.
     | `APP_PORT` | Port for the backend server. | `5000` |
     | `APP_URL` | Full public URL of the backend. | `http://localhost:5000` |
     | `ADMIN_EMAILS` | Semicolon-separated list of admin email addresses who can access admin features. | `admin@example.com;admin2@example.com` |
-    | `CORS_ORIGIN_1` | The URL of your frontend app to allow CORS. | `http://localhost:3000` |
-    | `DATABASE_URL` | Turso DB URL or local file path. | `file:./.database/local.db` |
-    | `DATABASE_AUTH_TOKEN` | Turso auth token (leave blank for local file DB). | `your-turso-token` |
+    | `CORS_ORIGINS` | Semicolon-separated list of allowed origins for CORS and auth trusted origins. | `http://localhost:3000;https://your-prod-domain.com` |
+    | `DATABASE_URL` | Turso DB URL (libsql/http(s)) or local file URL for development. | `file:./.database/local.db` |
+    | `DATABASE_AUTH_TOKEN` | Optional Turso auth token. Required for remote DB; omit for local file DB. | `your-turso-token` |
     | `GOOGLE_CLIENT_ID` | Your Google OAuth Client ID. | `your-google-client-id.apps.googleusercontent.com` |
     | `GOOGLE_CLIENT_SECRET` | Your Google OAuth Client Secret. | `your-google-client-secret` |
     | `AUTH_SECRET` | A long, random secret for signing auth tokens. Generate one with `openssl rand -hex 32`. | `a_very_long_and_random_secret_string` |

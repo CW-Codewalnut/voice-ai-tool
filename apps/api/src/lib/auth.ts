@@ -8,7 +8,7 @@ import { ENV } from "./env";
 export const auth = betterAuth({
 	baseURL: ENV.APP_URL,
 	secret: ENV.AUTH_SECRET,
-	trustedOrigins: [ENV.CORS_ORIGIN_1],
+	trustedOrigins: ENV.CORS_ORIGINS,
 
 	database: drizzleAdapter(db, {
 		schema,
