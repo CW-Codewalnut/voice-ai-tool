@@ -7,11 +7,14 @@ import { systemSettings } from "./schema";
 
 // since we will be running this as part of setup script, we need to use process.env
 // instead of using the db from the index file
-const db = drizzle({
-	client: createClient({
-		url: process.env.DATABASE_URL ?? "",
-	}),
+const client = createClient({
+	url: process.env.DATABASE_URL ?? "",
+	...(process.env.DATABASE_AUTH_TOKEN
+		? { authToken: process.env.DATABASE_AUTH_TOKEN }
+		: {}),
 });
+
+const db = drizzle({ client });
 
 async function seed() {
 	console.log("🌱 Seeding database...");

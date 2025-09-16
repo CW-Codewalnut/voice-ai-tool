@@ -6,7 +6,7 @@ import * as schema from "./schema";
 
 const client = createClient({
 	url: ENV.DATABASE_URL,
-	authToken: ENV.DATABASE_AUTH_TOKEN,
+	...(ENV.DATABASE_AUTH_TOKEN ? { authToken: ENV.DATABASE_AUTH_TOKEN } : {}),
 });
 
 export const db = drizzle({
