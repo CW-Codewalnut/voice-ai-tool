@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
@@ -50,8 +50,17 @@ export function AdminSettingsForm() {
 		},
 	});
 
+	const queryClient = useQueryClient();
 	const { mutate: updateSettings, isPending: isUpdateSettingsPending } =
-		useMutation(trpc.admin.createSystemSettings.mutationOptions());
+		useMutation(
+			trpc.admin.createSystemSettings.mutationOptions({
+				onSuccess: async () => {
+					await queryClient.invalidateQueries({
+						queryKey: trpc.admin.getSystemSettings.queryKey(),
+					});
+				},
+			}),
+		);
 
 	useEffect(() => {
 		if (currentSettings) {
