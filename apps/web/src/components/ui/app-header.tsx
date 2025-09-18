@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Link, useLocation } from "react-router";
 
 import { CodeWalnutIcon } from "~/components/icons/codewalnut";
-import { authClient } from "~/lib/auth";
+import { useAuth } from "~/hooks/use-auth";
 
 import { Button } from "./button";
 import { useSidebar } from "./sidebar";
@@ -23,7 +23,7 @@ export function AppHeader() {
 
 function SidebarTrigger() {
 	const { pathname } = useLocation();
-	const { data: authData } = authClient.useSession();
+	const { data: authData } = useAuth();
 	const { setOpenMobile, isMobile, toggleSidebar, open } = useSidebar();
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: need pathname in the dep arr tor trigger
