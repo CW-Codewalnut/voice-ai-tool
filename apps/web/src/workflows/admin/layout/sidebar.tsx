@@ -10,10 +10,16 @@ import {
 	SidebarMenuItem,
 	SidebarRail,
 } from "~/components/ui/sidebar";
+import { useAuth } from "~/hooks/use-auth";
 import { ROUTE_RESULTS, ROUTE_SETTINGS } from "~/lib/constants";
 
 export function AdminSidebar() {
 	const location = useLocation();
+	const { data: authData } = useAuth();
+
+	if (!authData) {
+		return null;
+	}
 
 	return (
 		<Sidebar>

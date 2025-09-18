@@ -8,6 +8,9 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import { AppProviders } from "~/components/providers";
 
+import { SidebarProvider } from "./components/ui/sidebar";
+import { AdminSidebar } from "./workflows/admin/layout/sidebar";
+
 export function meta() {
 	return [
 		{ title: "Voice Based Survey Tool | CodeWalnut" },
@@ -36,7 +39,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
 	return (
 		<AppProviders>
-			<Outlet />
+			<SidebarProvider>
+				<AdminSidebar />
+				<Outlet />
+			</SidebarProvider>
 		</AppProviders>
 	);
 }

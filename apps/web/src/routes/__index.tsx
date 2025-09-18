@@ -4,11 +4,11 @@ import { VoiceSurvey } from "~/workflows/voice-survey";
 
 export default function HomeRoute() {
 	return (
-		<>
-			<AppHeader />
+		<div className="w-full">
 			<ErrorBoundary>
+				<AppHeader />
 				<VoiceSurvey />
 			</ErrorBoundary>
-		</>
+		</div>
 	);
 }
