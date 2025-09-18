@@ -116,7 +116,7 @@ export function AdminSettingsForm() {
 						name="eventInfo"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Event Info</FormLabel>
+								<FormLabel>Survey Info</FormLabel>
 								<FormControl>
 									<Textarea {...field} />
 								</FormControl>
@@ -129,7 +129,7 @@ export function AdminSettingsForm() {
 						name="extraInstructions"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Extra Instructions</FormLabel>
+								<FormLabel>Cutom Instructions</FormLabel>
 								<FormControl>
 									<Textarea {...field} value={field.value || ""} />
 								</FormControl>
