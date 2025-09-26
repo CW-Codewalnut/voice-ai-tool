@@ -39,17 +39,9 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
 
 ## Demo
 
-#### Screenshots
+Live demo: https://voice-ai.codewalnut.com/
 
-##### Survey
-
-<img width="1915" height="1001" alt="initial UI state" src="https://github.com/user-attachments/assets/429d6020-7b72-4a98-9586-ca35facfd86c" />
-<img width="1917" height="1002" alt="conversation in progress UI state" src="https://github.com/user-attachments/assets/410d54bf-eb6e-40bd-937c-a1497dd9b199" />
-<img width="1919" height="996" alt="response submitted UI state" src="https://github.com/user-attachments/assets/c8807932-b1cf-4e9e-bfd7-7c125e306089" />
-
-##### Configuration Panel
-
-<img width="1919" height="995" alt="system settings form" src="https://github.com/user-attachments/assets/aa399e4a-f30e-488a-8a58-57077514edd5" />
+[![video demo](https://github.com/user-attachments/assets/692fc7d2-43d3-443f-bc00-d0353e33f32a)](https://www.youtube.com/watch?v=UYIP60lQDCo)
 
 ## Product Features
 
@@ -59,15 +51,20 @@ This **Voice AI Survey Tool** transforms the survey experience by replacing stat
   - Intuitive interface to configure the AI's persona, including event information, welcome/ending messages, and special instructions.
   - Dynamic form to add, remove, and edit survey questions.
   - Selection of different model voices and speech speed.
+  - <img width="1919" height="995" alt="system settings form" src="https://github.com/user-attachments/assets/aa399e4a-f30e-488a-8a58-57077514edd5" />
 - **Conversational Survey Interface**
   - Simple "Start Survey" initiation.
+  - <img width="1915" height="1001" alt="initial UI state" src="https://github.com/user-attachments/assets/429d6020-7b72-4a98-9586-ca35facfd86c" />
   - Visual feedback for different states: `initializing`, `listening`, `paused`, `completed`.
   - Real-time, interactive conversation with the AI agent.
   - Ability to pause, resume, and end the survey at any time.
+  - <img width="1917" height="1002" alt="conversation in progress UI state" src="https://github.com/user-attachments/assets/410d54bf-eb6e-40bd-937c-a1497dd9b199" />
+  - <img width="1919" height="996" alt="response submitted UI state" src="https://github.com/user-attachments/assets/c8807932-b1cf-4e9e-bfd7-7c125e306089" />
 - **Transcript Management**
   - A dedicated "Results" page in the admin dashboard.
   - Chronological list of all survey sessions.
   - Detailed view of each conversation, showing both user and AI messages.
+  - <img width="1869" height="996" alt="image" src="https://github.com/user-attachments/assets/a9c6e5a4-4caa-4107-8241-a868b7b38052" />
 
 ## Business Use Cases
 
