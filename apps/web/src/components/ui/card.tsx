@@ -2,9 +2,9 @@ import type * as React from "react";
 
 import { cn } from "~/lib/utils";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+function Card({ className, ...props }: React.ComponentProps<"article">) {
 	return (
-		<div
+		<article
 			className={cn(
 				"flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm",
 				className,
@@ -15,9 +15,9 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
-function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+function CardHeader({ className, ...props }: React.ComponentProps<"header">) {
 	return (
-		<div
+		<header
 			className={cn(
 				"@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
 				className,
@@ -28,9 +28,9 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
 	return (
-		<div
+		<h3
 			className={cn("font-semibold leading-none", className)}
 			data-slot="card-title"
 			{...props}
@@ -38,9 +38,9 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
 	return (
-		<div
+		<p
 			className={cn("text-muted-foreground text-sm", className)}
 			data-slot="card-description"
 			{...props}
@@ -71,9 +71,9 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
-function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+function CardFooter({ className, ...props }: React.ComponentProps<"footer">) {
 	return (
-		<div
+		<footer
 			className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
 			data-slot="card-footer"
 			{...props}

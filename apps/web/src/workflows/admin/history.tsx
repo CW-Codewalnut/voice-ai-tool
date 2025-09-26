@@ -1,12 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 
-import {
-	Card,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "~/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { trpc } from "~/lib/trpc";
 
 export function TranscriptsHistory() {
@@ -26,7 +21,7 @@ export function TranscriptsHistory() {
 									Session at&nbsp;
 									{format(item.createdAt, DATE_FORMAT)}
 								</CardTitle>
-								<CardDescription className="mt-4">
+								<CardContent className="mt-4 p-0">
 									<ul className="flex flex-col gap-2">
 										{item.content?.map((item) => (
 											<li key={item.itemId}>
@@ -54,7 +49,7 @@ export function TranscriptsHistory() {
 											</li>
 										))}
 									</ul>
-								</CardDescription>
+								</CardContent>
 							</CardHeader>
 						</Card>
 					</li>
