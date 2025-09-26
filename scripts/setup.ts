@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { copyFileSync, existsSync } from "node:fs";
 import { $ } from "bun";
 
 $.throws(true);
@@ -8,7 +8,7 @@ async function copyIfMissing(src: string, dest: string) {
 		console.log(`Skipping ${dest} (already exists)`);
 		return;
 	}
-	await $`cp -r ${src} ${dest}`;
+	copyFileSync(src, dest);
 	console.log(`Created ${dest} from ${src}`);
 }
 
